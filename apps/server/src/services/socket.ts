@@ -4,13 +4,18 @@ class SocketService{
     private _io: Server;
     constructor() {
         console.log('init SocketService');
-        this._io = new Server();
+        this._io = new Server({
+            cors: {
+                allowedHeaders: ['*'],
+                origin: '*' 
+            }
+        });
     }
 
     public initListeners(){
         const io = this._io;
         console.log('init socket listeners');
-        
+
         io.on('connection', (socket)=>{
             console.log('new socket connection', socket.id);
 
