@@ -1,0 +1,12 @@
+{
+  "name": "@gautam-4/tailwind-config",
+  "version": "1.0.0",
+  "type": "module",
+  "main": "tailwind.config.js",
+  "files": [
+    "tailwind.config.js"
+  ],
+  "dependencies": {
+    "tailwindcss": "^3.x"
+  }
+}
