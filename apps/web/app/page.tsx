@@ -85,7 +85,7 @@ export default function Page() {
               disabled={!message.trim()}
             >
               <Send className="h-5 w-5" />
-              <span>Send</span>
+              <span className='hidden md:block'>Send</span>
             </button>
           </div>
         </form>
