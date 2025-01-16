@@ -3,7 +3,7 @@
 import React, { useState, FormEvent, useRef, useEffect } from 'react';
 import { MessageCircle, Send } from 'lucide-react';
 import { useSocket } from '../context/SocketProvider';
-import { format } from 'date-fns';
+import { format, isToday } from 'date-fns';
 
 export default function Page() {
   const { sendMessage, messages, isConnected } = useSocket();
@@ -24,6 +24,14 @@ export default function Page() {
       sendMessage(message);
       setMessage('');
     }
+  };
+
+  const formatMessageDate = (date: Date | string) => {
+    const messageDate = new Date(date);
+    if (isToday(messageDate)) {
+      return format(messageDate, 'HH:mm');
+    }
+    return format(messageDate, 'MMM d, HH:mm');
   };
 
   return (
@@ -53,7 +61,7 @@ export default function Page() {
                 <p className="text-gray-100 break-words">{msg.content}</p>
                 <div className="flex items-center gap-2 mt-2">
                   <p className="text-xs text-gray-400">
-                    {format(new Date(msg.createdAt), 'HH:mm')}
+                    {formatMessageDate(msg.createdAt)}
                   </p>
                 </div>
               </div>
